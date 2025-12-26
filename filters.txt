@@ -34,6 +34,14 @@ www.youtube.com##ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-vide
 
 
 ! --------------------------------------------------
+! Long Videos
+! --------------------------------------------------
+
+! Hide videos longer than 2 hours
+youtube.com##ytd-thumbnail-overlay-time-status-renderer:has-text(/^[2-9]\d?:\d\d/):upward(ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-video-renderer,ytd-compact-video-renderer)
+
+
+! --------------------------------------------------
 ! Shorts Removal
 ! --------------------------------------------------
 
