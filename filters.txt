@@ -4,6 +4,7 @@
 ! Homepage: https://github.com/caniyo/ublock-filters
 ! License: MIT
 ! Expires: 1 day
+!
 ! Status: Work in Progress
 ! This filter list is actively maintained and incomplete.
 ! Rules are added or adjusted as needed.
@@ -29,17 +30,52 @@ www.youtube.com##:is(ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-
 www.youtube.com##:is(ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer,ytd-item-section-renderer,ytd-video-renderer):has([aria-label~="Streamed"])
 
 ! Hide VODs / streamed videos (backup – less efficient)
-www.youtube.com##:is(ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer,ytd-item-section-renderer,ytd-video-renderer):not(:has([aria-label~="Streamed"])) :is(#metadata-line>span,.yt-content-metadata-view-model__metadata-row):last-of-type:has-text(Streamed):upward(ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer,ytd-item-section-renderer,ytd-video-renderer)
+www.youtube.com##:is(ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer,ytd-item-section-renderer,ytd-video-renderer):not(:has([aria-label~="Streamed"])):is(#metadata-line>span,.yt-content-metadata-view-model__metadata-row):last-of-type:has-text(Streamed):upward(ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer,ytd-item-section-renderer,ytd-video-renderer)
+
+
+! --------------------------------------------------
+! Shorts Removal
+! --------------------------------------------------
+
+! Homepage and Subscriptions (grid view) – hide Shorts section
+youtube.com##[is-shorts]
+
+! Menu – hide Shorts button
+www.youtube.com###guide [title="Shorts"],.ytd-mini-guide-entry-renderer[title="Shorts"]
+
+! Search – hide Shorts
+www.youtube.com##ytd-search ytd-video-renderer:has([overlay-style="SHORTS"],[href^="/shorts/"])
+
+! Search, channels, subscriptions and recommendations – hide Shorts shelves
+www.youtube.com##ytd-reel-shelf-renderer
+
+! Channels – hide Shorts tab
+www.youtube.com##[tab-title="Shorts"]
+
+! Subscriptions – hide Shorts (grid view)
+www.youtube.com##ytd-browse[page-subtype="subscriptions"] ytd-grid-video-renderer:has([overlay-style="SHORTS"],[href^="/shorts/"])
+
+! Subscriptions – hide Shorts (list view)
+www.youtube.com##ytd-browse[page-subtype="subscriptions"] ytd-video-renderer:has([overlay-style="SHORTS"],[href^="/shorts/"])
+
+! Subscriptions – new layout – hide Shorts
+www.youtube.com##ytd-browse[page-subtype="subscriptions"] ytd-rich-item-renderer:has([overlay-style="SHORTS"],[href^="/shorts/"])
+
+! Sidebar – hide Shorts
+www.youtube.com###related :is(ytd-compact-video-renderer,yt-lockup-view-model):has([overlay-style="SHORTS"],[href^="/shorts/"])
+
+! History – hide Shorts
+www.youtube.com##ytd-item-section-renderer[page-subtype]:has(>#contents>[is-history]>#dismissible>ytd-thumbnail>#thumbnail[href^="/shorts/"])
 
 
 ! --------------------------------------------------
 ! Suggested & Recommended Videos
 ! --------------------------------------------------
 
-! Subscriptions page – hide videos based on channel URLs
+! Subscriptions – hide videos based on channel URLs
 youtube.com##ytd-browse[page-subtype="subscriptions"] ytd-rich-item-renderer:has([href="/channel/channel1-ID-here"],[href="@/Channel2NameHere"])
 
-! Subscriptions page – hide videos based on titles
+! Subscriptions – hide videos based on titles
 youtube.com##ytd-browse[page-subtype="subscriptions"] ytd-rich-item-renderer:has(:is(#video-title-link,h3):is([title*="Partial Match"],[title*="Case-Insensitive Partial Match"i],[title~="Space-separated-aka-Whole-word-match"]))
 
 ! Sidebar – hide videos based on titles
@@ -49,9 +85,6 @@ youtube.com###related :is(ytd-compact-video-renderer,yt-lockup-view-model):has(:
 youtube.com###related :is(ytd-compact-video-renderer,yt-lockup-view-model) .yt-content-metadata-view-model__metadata-row:first-child>span:has-text(/^(Channel Name 1|Channel Name 2)$/):upward(ytd-compact-video-renderer,yt-lockup-view-model)
 
 ! Watch page – hide sidebar
-www.youtube.com##ytd-watch-flexy #secondary
-
-! Watch page – sidebar without recommendations
 www.youtube.com##ytd-watch-flexy #secondary
 
 
@@ -99,8 +132,7 @@ youtube.com##div.html5-video-player.ytp-delhi-modern.ytp-fullscreen-grid-active 
 
 ! WARNING:
 ! This filter disables the "wheel" event on the video player.
-! If scrolling-related functionality breaks, remove this rule
-! and rely on the cosmetic filters above instead.
+! If scrolling-related functionality breaks, remove this rule.
 www.youtube.com##+js(aeld,wheel,,elements,.html5-video-player)
 
 
@@ -108,10 +140,10 @@ www.youtube.com##+js(aeld,wheel,,elements,.html5-video-player)
 ! Search Page Cleanup
 ! --------------------------------------------------
 
-! Search – keep only videos (no shorts)
+! Keep only videos (no Shorts)
 youtube.com##ytd-search ytd-item-section-renderer>#contents>:is(:not(ytd-video-renderer,yt-showing-results-for-renderer,[icon-name="promo-full-height:EMPTY_SEARCH"]),ytd-video-renderer:has([aria-label="Shorts"])),ytd-secondary-search-container-renderer
 
-! Search – hide results based on channel names
+! Hide results based on channel names
 www.youtube.com##ytd-search ytd-video-renderer:has(#text.ytd-channel-name:is([title="Exact channel name 1"],[title="Exact channel name 2"]))
 
 
