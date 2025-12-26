@@ -60,6 +60,17 @@ www.youtube.com##ytd-watch-flexy #secondary
 
 
 ! --------------------------------------------------
+! Sidebar Cleanup
+! --------------------------------------------------
+
+! Hide Explore section
+youtube.com##ytd-guide-section-renderer:has(ytd-guide-entry-renderer a[title="Explore"])
+
+! Hide "More from YouTube" section
+youtube.com##ytd-guide-section-renderer:has(ytd-guide-entry-renderer a[title="YouTube Premium"])
+
+
+! --------------------------------------------------
 ! Paid Promotion
 ! --------------------------------------------------
 
