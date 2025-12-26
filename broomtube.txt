@@ -62,12 +62,9 @@ www.youtube.com##ytd-search ytd-video-renderer:has(#text.ytd-channel-name:is([ti
 
 youtube.com##ytd-browse[page-subtype="home"]
 youtube.com##ytd-rich-grid-renderer
-
 youtube.com##ytd-watch-next-secondary-results-renderer
-
 youtube.com##ytd-watch-flexy ytd-rich-grid-renderer
 youtube.com##ytd-watch-flexy ytd-rich-item-renderer
-youtube.com##ytd-watch-flexy ytd-item-section-renderer
 youtube.com##ytd-watch-flexy ytd-shelf-renderer
 
 youtube.com##ytd-browse[page-subtype="explore"]
