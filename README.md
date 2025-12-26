@@ -1,36 +1,56 @@
-# uBlock Origin – Personal Filter List
+# 🧹 BroomTube / uBlock Filters
 
-This repository contains my **personal uBlock Origin filter list**.
+This repository contains a personal **uBlock Origin filter list** used to clean up YouTube.
 
-The rules are primarily based on and inspired by the solutions documented in the
-official r/uBlockOrigin wiki, specifically the YouTube-related filtering guidelines:
+The filters remove or reduce:
+- YouTube Shorts
+- Live streams and streamed videos
+- Endscreen and pause recommendations
+- Paid promotion overlays
+- Various UI clutter elements
 
-https://www.reddit.com/r/uBlockOrigin/wiki/solutions/youtube/
+The list is intended for **personal use** and is published mainly so it can be easily subscribed to via GitHub.
 
-I do **not** aim to replicate the entire wiki.  
-Instead, this list represents **what I personally consider important and useful** for my own browsing experience.
-
-## Purpose
-
-- Personal, opinionated filter selection  
-- Focus on practical and stable rules  
-- No aggressive or experimental filtering  
-- Maintained primarily for my own use, but publicly shared  
+---
 
 ## Usage
 
-1. Open uBlock Origin
-2. Go to **Dashboard → Filter lists**
-3. Add this custom filter list:
-4. Apply changes
+You can subscribe to this filter list directly in uBlock Origin:
 
-## Notes
+1. Open **uBlock Origin Dashboard**
+2. Go to **Filter lists**
+3. Scroll down to **Custom**
+4. Add the raw URL of `filters.txt`, for example:
+5. Click **Apply changes**
 
-- This is **not an official filter list**
-- Rules may change at any time without notice
-- Updates reflect changes to my personal setup
-- Use at your own discretion
+---
+
+## Important Notes
+
+- All cosmetic filters are intentionally kept **single-line**  
+  (formatting cosmetic filters across multiple lines can break functionality in uBlock Origin).
+- The list is maintained conservatively:
+  - no experimental layout hacks
+  - no aggressive rendering changes
+- Filters are only added if they have been tested to work reliably.
+
+---
+
+## Credits
+
+This filter list is a curated collection of solutions primarily sourced from the  
+**r/uBlockOrigin YouTube Solutions Wiki**:
+
+https://www.reddit.com/r/uBlockOrigin/wiki/solutions/youtube/
+
+All credit for the original techniques goes to the uBlock Origin community.  
+This repository only collects, organizes, and maintains the filters for personal use.
+
+---
 
 ## License
 
-MIT
+MIT License
+
+This license applies to the **collection and organization** of the filters in this repository.  
+It does not claim ownership over the original filtering techniques.
