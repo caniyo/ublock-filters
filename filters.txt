@@ -1,4 +1,5 @@
 ! Title: Personal uBlock Origin Filter List
+! Icon: https://raw.githubusercontent.com/caniyo/ublock-filters/main/icon.png
 ! Description: Personal filter selection based on r/uBlockOrigin YouTube solutions
 ! Author: caniyo
 ! Homepage: https://github.com/caniyo/ublock-filters
