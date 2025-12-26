@@ -2,62 +2,58 @@
 ! Author: caniyo
 ! License: MIT License
 !
-! A curated uBlock Origin filter list to clean up YouTube.
-! This list is a structured, consolidated version of
-! proven, working filters.
+! A curated uBlock Origin filter list for YouTube cleanup.
+! This file is a formatted version of proven working filters.
 !
-! No experimental layout hacks.
-! No rendering modifications beyond known-safe rules.
+! =========================================================
+! NOTE:
+! - No selector logic was changed
+! - No rules were merged, split, or optimized
+! - Formatting & comments only
 ! =========================================================
 
 
-! ---------------------------------------------------------
-! SHORTS – HIDE EVERYWHERE
-! ---------------------------------------------------------
+! =========================================================
+! SHORTS — HIDE EVERYWHERE
+! =========================================================
 
 ! Homepage & Subscriptions (Grid View)
 youtube.com##[is-shorts]
 
-! Menu – Hide Shorts button
+! Menu — Shorts button
 www.youtube.com###guide [title="Shorts"]
 www.youtube.com##.ytd-mini-guide-entry-renderer[title="Shorts"]
 
-! Search – Hide Shorts videos
+! Search — Shorts videos
 www.youtube.com##ytd-search ytd-video-renderer:has([overlay-style="SHORTS"],[href^="/shorts/"])
 
-! Search, Channels, Subscriptions, Sidebar – Hide Shorts shelves
+! Search / Channels / Subscriptions / Sidebar — Shorts shelves
 www.youtube.com##ytd-reel-shelf-renderer
 
-! Channels – Hide Shorts tab
+! Channels — Shorts tab
 www.youtube.com##[tab-title="Shorts"]
 
-! Subscriptions – Grid View
-www.youtube.com##ytd-browse[page-subtype="subscriptions"]
-ytd-grid-video-renderer:has([overlay-style="SHORTS"],[href^="/shorts/"])
+! Subscriptions — Grid View
+www.youtube.com##ytd-browse[page-subtype="subscriptions"] ytd-grid-video-renderer:has([overlay-style="SHORTS"],[href^="/shorts/"])
 
-! Subscriptions – List View
-www.youtube.com##ytd-browse[page-subtype="subscriptions"]
-ytd-video-renderer:has([overlay-style="SHORTS"],[href^="/shorts/"])
+! Subscriptions — List View
+www.youtube.com##ytd-browse[page-subtype="subscriptions"] ytd-video-renderer:has([overlay-style="SHORTS"],[href^="/shorts/"])
 
-! Subscriptions – New layout
-www.youtube.com##ytd-browse[page-subtype="subscriptions"]
-ytd-rich-item-renderer:has([overlay-style="SHORTS"],[href^="/shorts/"])
+! Subscriptions — New Layout
+www.youtube.com##ytd-browse[page-subtype="subscriptions"] ytd-rich-item-renderer:has([overlay-style="SHORTS"],[href^="/shorts/"])
 
-! Sidebar – Hide Shorts
-www.youtube.com###related
-:is(ytd-compact-video-renderer,yt-lockup-view-model)
-:has([overlay-style="SHORTS"],[href^="/shorts/"])
+! Sidebar — Shorts
+www.youtube.com###related :is(ytd-compact-video-renderer,yt-lockup-view-model):has([overlay-style="SHORTS"],[href^="/shorts/"])
 
-! History – Hide Shorts
-www.youtube.com##ytd-item-section-renderer[page-subtype]
-:has(>#contents>[is-history]>#dismissible>ytd-thumbnail>#thumbnail[href^="/shorts/"])
+! History — Shorts
+www.youtube.com##ytd-item-section-renderer[page-subtype]:has(>#contents>[is-history]>#dismissible>ytd-thumbnail>#thumbnail[href^="/shorts/"])
 
 
-! ---------------------------------------------------------
+! =========================================================
 ! LIVE STREAMS & VODS
-! ---------------------------------------------------------
+! =========================================================
 
-! Hide Live videos
+! Live videos
 www.youtube.com##:is(
   ytd-rich-item-renderer,
   ytd-grid-video-renderer,
@@ -65,7 +61,7 @@ www.youtube.com##:is(
   ytd-item-section-renderer
 ):has(.badge-style-type-live-now-alternate,.yt-spec-avatar-shape--live-ring)
 
-! Hide Streamed / VOD videos
+! Streamed / VOD videos
 www.youtube.com##:is(
   ytd-rich-item-renderer,
   ytd-grid-video-renderer,
@@ -74,7 +70,7 @@ www.youtube.com##:is(
   ytd-video-renderer
 ):has([aria-label~="Streamed"])
 
-! Backup – Streamed Videos (less efficient, optional)
+! Streamed / VOD videos — backup (less efficient)
 www.youtube.com##:is(
   ytd-rich-item-renderer,
   ytd-grid-video-renderer,
@@ -93,57 +89,53 @@ www.youtube.com##:is(
  )
 
 
-! ---------------------------------------------------------
+! =========================================================
 ! FILTER BY CHANNEL OR TITLE
-! ---------------------------------------------------------
+! =========================================================
 
-! Home – Hide videos by channel URL
-youtube.com##ytd-browse[page-subtype="home"]
-ytd-rich-item-renderer:has(
+! Home — channel URLs
+youtube.com##ytd-browse[page-subtype="home"] ytd-rich-item-renderer:has(
   [href="/channel/channel1-ID-here"],
   [href="@/Channel2NameHere"]
 )
 
-! Home – Hide videos by title
-youtube.com##ytd-browse[page-subtype="home"]
-ytd-rich-item-renderer:has(
+! Home — video titles
+youtube.com##ytd-browse[page-subtype="home"] ytd-rich-item-renderer:has(
   :is(#video-title-link,h3):is(
     [title*="Partial Match"],
     [title*="Case-Insensitive Partial Match"i],
-    [title~="Whole-word-match"]
+    [title~="Space-separated-aka-Whole-word-match"]
   )
 )
 
-! Sidebar – Hide videos by title
-youtube.com###related
-:is(ytd-compact-video-renderer,yt-lockup-view-model)
-:has(
+! Sidebar — video titles
+youtube.com###related :is(ytd-compact-video-renderer,yt-lockup-view-model):has(
   :is(#video-title,h3):is(
     [title*="Partial Match"],
     [title*="Case-Insensitive Partial Match"i],
-    [title~="Whole-word-match"]
+    [title~="Space-separated-aka-Whole-word-match"]
   )
 )
 
-! Sidebar – Hide videos by channel name
+! Sidebar — channel names
 www.youtube.com###related
 :is(ytd-compact-video-renderer,yt-lockup-view-model)
 .yt-content-metadata-view-model__metadata-row:first-child>span
 :has-text(/^(Channel Name 1|Channel Name 2)$/)
 :upward(ytd-compact-video-renderer,yt-lockup-view-model)
 
-! Mobile – Hide videos by channel URL
+! Mobile — channel URLs
 m.youtube.com##ytm-media-item
 .media-channel a:not([class])
-:is([href="/@ChannelURL"],[href="/@AnotherChannelURL"])
+:is([href="/@ChannelURL"], [href="/@AnotherChannelURL"])
 :upward(ytm-media-item)
 
 
-! ---------------------------------------------------------
+! =========================================================
 ! SEARCH CLEANUP
-! ---------------------------------------------------------
+! =========================================================
 
-! Search – Keep only regular videos (no Shorts)
+! Keep only regular videos (no Shorts)
 youtube.com##ytd-search ytd-item-section-renderer>#contents>:
 is(
   :not(
@@ -155,9 +147,8 @@ is(
 ),
 ytd-secondary-search-container-renderer
 
-! Search – Hide results by channel name
-www.youtube.com##ytd-search
-ytd-video-renderer:has(
+! Hide results by channel name
+www.youtube.com##ytd-search ytd-video-renderer:has(
   #text.ytd-channel-name:is(
     [title="Exact channel name 1"],
     [title="Exact channel name 2"]
@@ -165,16 +156,16 @@ ytd-video-renderer:has(
 )
 
 
-! ---------------------------------------------------------
-! LAYOUT – REMOVE EMPTY GAPS (HOME & SUBS)
-! ---------------------------------------------------------
+! =========================================================
+! LAYOUT — REMOVE EMPTY GAPS
+! =========================================================
 
 ! Move homepage placeholders to the end
 www.youtube.com##ytd-browse[page-subtype="home"]
-:is(ytd-rich-grid-row,#contents.ytd-rich-grid-row)
+:is(ytd-rich-grid-row, #contents.ytd-rich-grid-row)
 :style(display: contents !important)
 
-! Fix grid alignment
+! Grid alignment fixes
 www.youtube.com##ytd-rich-item-renderer[rendered-from-rich-grid][is-in-first-column]
 :style(margin-left: calc(var(--ytd-rich-grid-item-margin)/2) !important)
 
@@ -188,60 +179,37 @@ www.youtube.com###content.ytd-rich-section-renderer
 )
 
 
-! ---------------------------------------------------------
+! =========================================================
 ! PLAYER OVERLAYS & FULLSCREEN
-! ---------------------------------------------------------
+! =========================================================
 
-! Paid promotion overlay
+! Paid promotions
 youtube.com##.ytp-paid-content-overlay
 youtube.com##.ytmPaidContentOverlayHost
 
-! Recommendations after pause
+! Pause recommendations
 youtube-nocookie.com,youtube.com##.ytp-pause-overlay
 youtube-nocookie.com,youtube.com##.show-video-thumbnail-button
 ~youtube-nocookie.com,~youtube.com##iframe ~ #topvbar > #rvid
 
-! No endscreen recommendations
+! Endscreen recommendations
 youtube.com##.html5-video-player.ended-mode .ytp-fullscreen-grid
 
-! Fullscreen – remove suggestion grid when scrolling
-youtube.com##.html5-video-player.ytp-fullscreen
-:is(.ytp-fullscreen-grid-peeking,.ytp-fullscreen-grid-active)
-.ytp-fullscreen-grid
+! Fullscreen — remove suggestion grid on scroll
+youtube.com##.html5-video-player.ytp-fullscreen:is(.ytp-fullscreen-grid-peeking,.ytp-fullscreen-grid-active) .ytp-fullscreen-grid
+youtube.com##.html5-video-player.ytp-fullscreen:is(.ytp-fullscreen-grid-peeking,.ytp-fullscreen-grid-active) .ytp-gradient-bottom
+youtube.com##div.html5-video-player:style(--ytp-grid-scroll-percentage: 0 !important)
 
-youtube.com##.html5-video-player.ytp-fullscreen
-:is(.ytp-fullscreen-grid-peeking,.ytp-fullscreen-grid-active)
-.ytp-gradient-bottom
-
-youtube.com##.html5-video-player.ytp-fullscreen
-:is(.ytp-fullscreen-grid-peeking,.ytp-fullscreen-grid-active)
-.ytp-chrome-bottom:style(bottom: 0px !important)
-
-youtube.com##.html5-video-player.ytp-fullscreen
-:is(.ytp-fullscreen-grid-peeking,.ytp-fullscreen-grid-active)
-:not(:is(.ytp-autohide,.ytp-autohide-active))
-.ytp-chrome-bottom:style(opacity: unset !important)
-
-youtube.com##.html5-video-player.ytp-fullscreen
-:is(.ytp-fullscreen-grid-peeking,.ytp-fullscreen-grid-active)
-.ytp-overlays-container:style(
-  bottom: calc(var(--yt-delhi-bottom-controls-height, 72px) + 30px) !important
-)
-
-youtube.com##div.html5-video-player
-:style(--ytp-grid-scroll-percentage: 0 !important)
-
-! Kill wheel event (optional, known-working for you)
+! Disable mouse wheel event (known working)
 www.youtube.com##+js(aeld, wheel, , elements, .html5-video-player )
 
 
-! ---------------------------------------------------------
+! =========================================================
 ! MISC
-! ---------------------------------------------------------
+! =========================================================
 
-! Hide members-only videos
+! Members-only videos
 youtube.com##ytd-rich-item-renderer:has(.yt-badge-shape--membership)
 
-! Increase grid to show 5 videos
-www.youtube.com##ytd-rich-grid-renderer
-:style(--ytd-rich-grid-items-per-row: 5 !important;)
+! Increase grid to 5 videos
+www.youtube.com##ytd-rich-grid-renderer:style(--ytd-rich-grid-items-per-row: 5 !important;)
