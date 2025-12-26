@@ -1,10 +1,9 @@
-! Title: BroomTube - A YouTube Cleanup List
+! Title: 🧹 BroomTube – A YouTube Cleanup List
 ! Description: Personal filter selection based on r/uBlockOrigin YouTube solutions
 ! Author: caniyo
 ! Homepage: https://github.com/caniyo/ublock-filters
 ! License: MIT
 ! Expires: 1 day
-! Icon: https://raw.githubusercontent.com/caniyo/ublock-filters/main/icon.png
 ! Status: Work in Progress
 ! This filter list is actively maintained and incomplete.
 ! Rules are added or adjusted as needed.
