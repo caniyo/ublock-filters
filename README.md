@@ -1,56 +1,29 @@
-# 🧹 BroomTube / uBlock Filters
+# uBlock Filters
 
-This repository contains a personal **uBlock Origin filter list** used to clean up YouTube.
+Personal uBlock Origin filter lists.
 
-The filters remove or reduce:
-- YouTube Shorts
-- Live streams and streamed videos
-- Endscreen and pause recommendations
-- Paid promotion overlays
-- Various UI clutter elements
+This repository contains **small, personal and opinionated filters**
+that I use to remove annoyances, broken UX and visual clutter on the web.
 
-The list is intended for **personal use** and is published mainly so it can be easily subscribed to via GitHub.
-
----
+The filters here are primarily maintained for **my own use**.
+They may be site-specific, experimental, or change without notice.
 
 ## Usage
 
-You can subscribe to this filter list directly in uBlock Origin:
+You can subscribe to any filter list directly in uBlock Origin
+using the raw GitHub URL of the file.
 
-1. Open **uBlock Origin Dashboard**
-2. Go to **Filter lists**
-3. Scroll down to **Custom**
-4. Add the raw URL of `filters.txt`, for example:
-5. Click **Apply changes**
+Example:
 
----
+https://raw.githubusercontent.com/caniyo/ublock-filters/main/annoyances.txt
 
-## Important Notes
+## Notes
 
-- All cosmetic filters are intentionally kept **single-line**  
-  (formatting cosmetic filters across multiple lines can break functionality in uBlock Origin).
-- The list is maintained conservatively:
-  - no experimental layout hacks
-  - no aggressive rendering changes
-- Filters are only added if they have been tested to work reliably.
+- No guarantees of long-term stability
+- Filters are added when something becomes annoying enough
+- Not intended to be a general-purpose filter collection
+- Feel free to fork or copy anything useful
 
 ---
 
-## Credits
-
-This filter list is a curated collection of solutions primarily sourced from the  
-**r/uBlockOrigin YouTube Solutions Wiki**:
-
-https://www.reddit.com/r/uBlockOrigin/wiki/solutions/youtube/
-
-All credit for the original techniques goes to the uBlock Origin community.  
-This repository only collects, organizes, and maintains the filters for personal use.
-
----
-
-## License
-
-MIT License
-
-This license applies to the **collection and organization** of the filters in this repository.  
-It does not claim ownership over the original filtering techniques.
+Author: caniyo
