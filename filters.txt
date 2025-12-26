@@ -11,6 +11,11 @@
 ! Filters were collected, organized, and documented
 ! by caniyo. All credit for the original techniques
 ! goes to the uBlock Origin community.
+!
+! Note:
+! This list is maintained for personal use.
+! No active support or public promotion intended.
+
 
 
 ! =========================
