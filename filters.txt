@@ -23,14 +23,14 @@
 ! Live & Streamed Content
 ! --------------------------------------------------
 
-! Hide live videos
-www.youtube.com##:is(ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer,ytd-item-section-renderer):has(.badge-style-type-live-now-alternate,.yt-spec-avatar-shape--live-ring)
+! Hide currently live videos
+www.youtube.com##ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer,ytd-item-section-renderer:has(ytd-badge-supported-renderer[icon="LIVE"])
 
-! Hide VODs / streamed videos
-www.youtube.com##:is(ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer,ytd-item-section-renderer,ytd-video-renderer):has([aria-label~="Streamed"])
+! Hide VODs that were streamed live (robust)
+www.youtube.com##ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer,ytd-item-section-renderer:has(ytd-thumbnail-overlay-time-status-renderer[overlay-style="LIVE"])
 
-! Hide VODs / streamed videos (backup – less efficient)
-www.youtube.com##:is(ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer,ytd-item-section-renderer,ytd-video-renderer):not(:has([aria-label~="Streamed"])):is(#metadata-line>span,.yt-content-metadata-view-model__metadata-row):last-of-type:has-text(Streamed):upward(ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer,ytd-item-section-renderer,ytd-video-renderer)
+! Backup: hide videos marked as "Streamed"
+www.youtube.com##ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer,ytd-item-section-renderer,ytd-video-renderer:has([aria-label~="Streamed"])
 
 
 ! --------------------------------------------------
