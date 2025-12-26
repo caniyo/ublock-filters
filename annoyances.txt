@@ -1,0 +1,38 @@
+! Title: Personal Annoyance Filters
+! Description: Small personal filters to remove annoyances and broken UX
+! Author: caniyo
+! License: MIT
+! Homepage: https://github.com/caniyo/ublock-filters
+
+! ======================================================================
+! Scroll lock removal
+! ======================================================================
+! Force scrolling on sites that lock body overflow
+
+wago.io##body:style(overflow: auto !important;)
+zowie.benq.eu##body:style(overflow: auto !important;)
+
+! ======================================================================
+! Reddit – hide games and unwanted sections
+! ======================================================================
+
+! Hide game / promo preview images
+reddit.com/media##img[src^="https://preview.redd.it"]:others()
+
+! Hide generic guides sidebar section
+reddit.com##[noun="gen_guides_sidebar"]
+
+! Hide multireddit section and separator
+reddit.com##faceplate-expandable-section-helper:has([aria-controls="multireddits_section"])
+reddit.com##faceplate-expandable-section-helper:has([aria-controls="multireddits_section"])+hr
+
+! Hide games drawer and separator
+reddit.com##[noun="games_drawer"]
+reddit.com##[noun="games_drawer"]+hr
+
+! ======================================================================
+! PCGH Extreme
+! ======================================================================
+! 2025-12-20 – Remove first large rectangle (ad / teaser)
+
+extreme.pcgameshardware.de##div.rectangleWrap:nth-of-type(1)
