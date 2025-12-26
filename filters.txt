@@ -2,15 +2,9 @@
 ! Author: caniyo
 ! License: MIT License
 !
-! Credits / Sources:
-! This filter list is a curated collection of solutions
-! primarily sourced from the official r/uBlockOrigin
-! YouTube solutions wiki:
+! Credits:
+! Core filters sourced from the r/uBlockOrigin YouTube Solutions Wiki:
 ! https://www.reddit.com/r/uBlockOrigin/wiki/solutions/youtube/
-!
-! Filters were collected, organized, and documented
-! by caniyo. All credit for the original techniques
-! goes to the uBlock Origin community.
 !
 ! Note:
 ! This list is maintained for personal use.
@@ -83,8 +77,3 @@ www.youtube.com##+js(aeld, wheel, , elements, .html5-video-player )
 
 youtube.com##ytd-rich-item-renderer:has(.yt-badge-shape--membership)
 www.youtube.com##ytd-rich-grid-renderer:style(--ytd-rich-grid-items-per-row: 5 !important;)
-
-
-! End of BroomTube
-! Maintained by caniyo
-! Based on community knowledge from r/uBlockOrigin
