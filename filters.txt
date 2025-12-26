@@ -31,9 +31,6 @@ www.youtube.com##ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-vide
 ! Shorts Removal
 ! --------------------------------------------------
 
-! Homepage & subscriptions (grid view) – hide Shorts section
-youtube.com##[is-shorts]
-
 ! Menu – hide Shorts button
 www.youtube.com###guide [title="Shorts"],.ytd-mini-guide-entry-renderer[title="Shorts"]
 
