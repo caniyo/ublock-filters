@@ -56,6 +56,24 @@ youtube.com##ytd-search ytd-item-section-renderer>#contents>:is(:not(ytd-video-r
 www.youtube.com##ytd-search ytd-video-renderer:has(#text.ytd-channel-name:is([title="Exact channel name 1"],[title="Exact channel name 2"]))
 
 
+! ======================================================================
+! RECOMMENDATIONS & SUGGESTIONS
+! ======================================================================
+
+youtube.com##ytd-browse[page-subtype="home"]
+youtube.com##ytd-rich-grid-renderer
+
+youtube.com##ytd-watch-next-secondary-results-renderer
+
+youtube.com##ytd-watch-flexy ytd-rich-grid-renderer
+youtube.com##ytd-watch-flexy ytd-rich-item-renderer
+youtube.com##ytd-watch-flexy ytd-item-section-renderer
+youtube.com##ytd-watch-flexy ytd-shelf-renderer
+
+youtube.com##ytd-browse[page-subtype="explore"]
+youtube.com##ytd-browse[page-subtype="trending"]
+
+
 ! =========================
 ! LAYOUT / FULLSCREEN
 ! =========================
