@@ -1,132 +1,221 @@
-! Title: 🧹 BroomTube – A YouTube Cleanup List
-! Description: Personal YouTube cleanup filters
+🧹 BroomTube – YouTube Cleanup Filter List
+! =========================================================
+! Name: BroomTube
 ! Author: caniyo
-! License: MIT
-! Expires: 1 day
+! License: MIT License
+!
+! Description:
+! A comprehensive uBlock Origin filter list to clean up
+! YouTube by removing Shorts, Live streams, VODs,
+! recommendations, ads, overlays, and unwanted UI elements.
+!
+! Intended for self-hosting and subscription via GitHub.
+! =========================================================
 
 
-! ==================================================
-! = YouTube
-! ==================================================
+! ---------------------------------------------------------
+! SHORTS – GLOBAL
+! ---------------------------------------------------------
+
+! Homepage & Subscriptions (Grid View) – Hide Shorts
+youtube.com##[is-shorts]
+
+! Menu – Hide Shorts button
+www.youtube.com###guide [title="Shorts"]
+www.youtube.com##.ytd-mini-guide-entry-renderer[title="Shorts"]
+
+! Search – Hide Shorts videos
+www.youtube.com##ytd-search ytd-video-renderer:has([overlay-style="SHORTS"],[href^="/shorts/"])
+
+! Search / Channels / Subscriptions / Sidebar – Hide Shorts shelves
+www.youtube.com##ytd-reel-shelf-renderer
+
+! Channels – Hide Shorts tab
+www.youtube.com##[tab-title="Shorts"]
+
+! Subscriptions – Grid View
+www.youtube.com##ytd-browse[page-subtype="subscriptions"] ytd-grid-video-renderer:has([overlay-style="SHORTS"],[href^="/shorts/"])
+
+! Subscriptions – List View
+www.youtube.com##ytd-browse[page-subtype="subscriptions"] ytd-video-renderer:has([overlay-style="SHORTS"],[href^="/shorts/"])
+
+! Subscriptions – New Layout
+www.youtube.com##ytd-browse[page-subtype="subscriptions"] ytd-rich-item-renderer:has([overlay-style="SHORTS"],[href^="/shorts/"])
+
+! Sidebar – Hide Shorts
+www.youtube.com###related :is(ytd-compact-video-renderer,yt-lockup-view-model):has([overlay-style="SHORTS"],[href^="/shorts/"])
+
+! History – Hide Shorts
+www.youtube.com##ytd-item-section-renderer[page-subtype]:has(>#contents>[is-history]>#dismissible>ytd-thumbnail>#thumbnail[href^="/shorts/"])
 
 
-! --------------------------------------------------
-! Shorts
-! --------------------------------------------------
+! ---------------------------------------------------------
+! LIVE STREAMS & VODS
+! ---------------------------------------------------------
 
-! Subscriptions – hide Shorts
-youtube.com##ytd-browse[page-subtype="subscriptions"] ytd-rich-item-renderer:has(a[href^="/shorts/"])
+! Hide Live videos
+www.youtube.com##:is(
+  ytd-rich-item-renderer,
+  ytd-grid-video-renderer,
+  ytd-compact-video-renderer,
+  ytd-item-section-renderer
+):has(.badge-style-type-live-now-alternate,.yt-spec-avatar-shape--live-ring)
 
-! Search – hide Shorts
-youtube.com##ytd-search ytd-video-renderer:has(a[href^="/shorts/"])
+! Hide Streamed / VOD videos
+www.youtube.com##:is(
+  ytd-rich-item-renderer,
+  ytd-grid-video-renderer,
+  ytd-compact-video-renderer,
+  ytd-item-section-renderer,
+  ytd-video-renderer
+):has([aria-label~="Streamed"])
 
-! Sidebar – hide Shorts
-youtube.com###related :is(ytd-compact-video-renderer,yt-lockup-view-model):has(a[href^="/shorts/"])
+! Backup method – Hide Streamed videos (less efficient)
+www.youtube.com##:is(
+  ytd-rich-item-renderer,
+  ytd-grid-video-renderer,
+  ytd-compact-video-renderer,
+  ytd-item-section-renderer,
+  ytd-video-renderer
+):not(:has([aria-label~="Streamed"]))
+ :is(#metadata-line>span,.yt-content-metadata-view-model__metadata-row)
+ :last-of-type:has-text(Streamed)
+ :upward(ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer,ytd-item-section-renderer,ytd-video-renderer)
 
-! History – hide Shorts
-youtube.com##ytd-item-section-renderer:has(a[href^="/shorts/"])
 
+! ---------------------------------------------------------
+! FILTER BY CHANNEL OR TITLE
+! ---------------------------------------------------------
 
-! --------------------------------------------------
-! Long Videos
-! --------------------------------------------------
-
-! Subscriptions – hide videos longer than 2 hours
-youtube.com##ytd-browse[page-subtype="subscriptions"] ytd-rich-item-renderer:has(
-ytd-thumbnail-overlay-time-status-renderer:has-text(/^[2-9]\d?:\d\d/)
+! Home – Hide videos by channel URL
+youtube.com##ytd-browse[page-subtype="home"] ytd-rich-item-renderer:has(
+  [href="/channel/channel1-ID-here"],
+  [href="@/Channel2NameHere"]
 )
 
-
-! --------------------------------------------------
-! Live Videos
-! --------------------------------------------------
-
-! Hide currently live videos
-youtube.com##ytd-rich-item-renderer:has(ytd-badge-supported-renderer[icon="LIVE"])
-
-
-! --------------------------------------------------
-! Search Cleanup
-! --------------------------------------------------
-
-! Search – keep only videos (no Shorts / shelves)
-youtube.com##ytd-search ytd-item-section-renderer>#contents>:is(
-:not(ytd-video-renderer,yt-showing-results-for-renderer),
-ytd-video-renderer:has([aria-label="Shorts"])
-),ytd-secondary-search-container-renderer
-
-! Search – hide results based on channel names
-youtube.com##ytd-search ytd-video-renderer:has(
-#text.ytd-channel-name:is([title="Exact channel name 1"],[title="Exact channel name 2"])
+! Home – Hide videos by title
+youtube.com##ytd-browse[page-subtype="home"] ytd-rich-item-renderer:has(
+  :is(#video-title-link,h3):is(
+    [title*="Partial Match"],
+    [title*="Case-Insensitive Partial Match"i],
+    [title~="Whole-word-match"]
+  )
 )
 
-
-! --------------------------------------------------
-! Suggestions & Recommendations
-! --------------------------------------------------
-
-! Subscriptions – hide videos based on channel URLs
-youtube.com##ytd-browse[page-subtype="subscriptions"] ytd-rich-item-renderer:has(
-[href="/channel/channel1-ID-here"],[href="@/Channel2NameHere"]
-)
-
-! Subscriptions – hide videos based on titles
-youtube.com##ytd-browse[page-subtype="subscriptions"] ytd-rich-item-renderer:has(
-:is(#video-title-link,h3):is(
-[title*="Partial Match"],
-[title*="Case-Insensitive Partial Match"i],
-[title~="Space-separated-aka-Whole-word-match"]
-)
-)
-
-! Sidebar – hide videos based on titles
+! Sidebar – Hide videos by title
 youtube.com###related :is(ytd-compact-video-renderer,yt-lockup-view-model):has(
-:is(#video-title,h3):is(
-[title*="Partial Match"],
-[title*="Case-Insensitive Partial Match"i],
-[title~="Space-separated-aka-Whole-word-match"]
-)
-)
-
-! Sidebar – hide videos based on channel names
-youtube.com###related :is(ytd-compact-video-renderer,yt-lockup-view-model)
-.yt-content-metadata-view-model__metadata-row:first-child>span:has-text(
-/^(Channel Name 1|Channel Name 2)$/
-):upward(ytd-compact-video-renderer,yt-lockup-view-model)
-
-
-! --------------------------------------------------
-! Sidebar Cleanup
-! --------------------------------------------------
-
-! Hide Explore section
-youtube.com##ytd-guide-section-renderer:has(a[title="Explore"])
-
-! Hide "More from YouTube" section
-youtube.com##ytd-guide-section-renderer:has(a[title="YouTube Premium"])
-
-
-! --------------------------------------------------
-! Layout
-! --------------------------------------------------
-
-! Subscriptions – show 5 videos per row
-youtube.com##ytd-browse[page-subtype="subscriptions"] ytd-rich-grid-renderer:style(
---ytd-rich-grid-items-per-row:5!important;
+  :is(#video-title,h3):is(
+    [title*="Partial Match"],
+    [title*="Case-Insensitive Partial Match"i],
+    [title~="Whole-word-match"]
+  )
 )
 
+! Sidebar – Hide videos by channel name
+www.youtube.com###related :is(ytd-compact-video-renderer,yt-lockup-view-model)
+.yt-content-metadata-view-model__metadata-row:first-child>span
+:has-text(/^(Channel Name 1|Channel Name 2)$/)
+:upward(ytd-compact-video-renderer,yt-lockup-view-model)
 
-! --------------------------------------------------
-! Paid Promotion
-! --------------------------------------------------
-
-! Hide paid promotion overlay
-youtube.com##.ytp-paid-content-overlay,.ytmPaidContentOverlayHost
+! Mobile – Hide videos by channel URL
+m.youtube.com##ytm-media-item .media-channel a:not([class])
+:is([href="/@ChannelURL"],[href="/@AnotherChannelURL"])
+:upward(ytm-media-item)
 
 
-! --------------------------------------------------
-! Player
-! --------------------------------------------------
+! ---------------------------------------------------------
+! SEARCH CLEANUP
+! ---------------------------------------------------------
 
-! Hide endscreen recommendations
+! Search – Keep only regular videos (no Shorts)
+youtube.com##ytd-search ytd-item-section-renderer>#contents>:
+is(
+  :not(ytd-video-renderer,yt-showing-results-for-renderer,[icon-name="promo-full-height:EMPTY_SEARCH"]),
+  ytd-video-renderer:has([aria-label="Shorts"])
+),
+ytd-secondary-search-container-renderer
+
+! Search – Hide results by channel name
+www.youtube.com##ytd-search ytd-video-renderer:has(
+  #text.ytd-channel-name:is(
+    [title="Exact channel name 1"],
+    [title="Exact channel name 2"]
+  )
+)
+
+
+! ---------------------------------------------------------
+! LAYOUT & UI CLEANUP
+! ---------------------------------------------------------
+
+! Home – Move placeholders to the end
+www.youtube.com##ytd-browse[page-subtype="home"]
+:is(ytd-rich-grid-row,#contents.ytd-rich-grid-row)
+:style(display: contents !important)
+
+! Fix grid alignment
+www.youtube.com##ytd-rich-item-renderer[rendered-from-rich-grid][is-in-first-column]
+:style(margin-left: calc(var(--ytd-rich-grid-item-margin)/2) !important)
+
+www.youtube.com##ytd-rich-grid-renderer>#contents
+:style(margin-left: calc(var(--ytd-rich-grid-gutter-margin)) !important)
+
+www.youtube.com###content.ytd-rich-section-renderer
+:style(
+  margin-left: calc(var(--ytd-rich-grid-item-margin)/2) !important;
+  margin-right: calc(var(--ytd-rich-grid-item-margin)*2.5) !important;
+)
+
+! Videos – Remove sidebar entirely
+www.youtube.com##ytd-watch-flexy #secondary
+
+
+! ---------------------------------------------------------
+! PLAYER OVERLAYS & RECOMMENDATIONS
+! ---------------------------------------------------------
+
+! Paid promotion overlay
+youtube.com##.ytp-paid-content-overlay
+youtube.com##.ytmPaidContentOverlayHost
+
+! Recommendations after pause
+youtube.com##.ytp-pause-overlay
+youtube.com##.show-video-thumbnail-button
+~youtube.com##iframe ~ #topvbar > #rvid
+
+! Endscreen recommendations
 youtube.com##.html5-video-player.ended-mode .ytp-fullscreen-grid
+
+
+! ---------------------------------------------------------
+! FULLSCREEN GRID & SCROLL BEHAVIOR
+! ---------------------------------------------------------
+
+! Remove fullscreen suggestion grid
+youtube.com##.html5-video-player.ytp-fullscreen:is(
+  .ytp-fullscreen-grid-peeking,
+  .ytp-fullscreen-grid-active
+) .ytp-fullscreen-grid
+
+youtube.com##.html5-video-player.ytp-fullscreen:is(
+  .ytp-fullscreen-grid-peeking,
+  .ytp-fullscreen-grid-active
+) .ytp-gradient-bottom
+
+youtube.com##div.html5-video-player
+:style(--ytp-grid-scroll-percentage: 0 !important)
+
+! WARNING: Disables mouse wheel events over the player
+www.youtube.com##+js(aeld, wheel, , elements, .html5-video-player )
+
+
+! ---------------------------------------------------------
+! MISC
+! ---------------------------------------------------------
+
+! Hide members-only videos
+youtube.com##ytd-rich-item-renderer:has(.yt-badge-shape--membership)
+
+! Increase grid to 5 videos per row
+www.youtube.com##ytd-rich-grid-renderer
+:style(--ytd-rich-grid-items-per-row: 5 !important;)
