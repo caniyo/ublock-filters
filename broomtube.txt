@@ -45,6 +45,14 @@ youtube.com###related :is(ytd-compact-video-renderer,yt-lockup-view-model):has(:
 www.youtube.com###related :is(ytd-compact-video-renderer,yt-lockup-view-model) .yt-content-metadata-view-model__metadata-row:first-child>span:has-text(/^(Channel Name 1|Channel Name 2)$/):upward(ytd-compact-video-renderer,yt-lockup-view-model)
 m.youtube.com##ytm-media-item .media-channel a:not([class]):is([href="/@ChannelURL"],[href="/@AnotherChannelURL"]):upward(ytm-media-item)
 
+! =========================
+! PLAYER MANIPULATION (AI)
+! =========================
+
+! Remove auto-dub audio tracks (trusted filters required)
+youtube.com##+js(json-edit, ..adaptiveFormats.*[?.audioTrack.isAutoDubbed])
+youtube.com##+js(json-edit-xhr-response, ..adaptiveFormats.*[?.audioTrack.isAutoDubbed], propsToMatch, /youtubei)
+
 
 ! =========================
 ! SEARCH
