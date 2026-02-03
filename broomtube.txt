@@ -27,7 +27,6 @@ www.youtube.com##ytd-browse[page-subtype="subscriptions"] ytd-rich-item-renderer
 www.youtube.com###related :is(ytd-compact-video-renderer,yt-lockup-view-model):has([overlay-style="SHORTS"],[href^="/shorts/"])
 www.youtube.com##ytd-item-section-renderer[page-subtype]:has(>#contents>[is-history]>#dismissible>ytd-thumbnail>#thumbnail[href^="/shorts/"])
 
-
 ! =========================
 ! LIVE / VODS
 ! =========================
@@ -35,7 +34,6 @@ www.youtube.com##ytd-item-section-renderer[page-subtype]:has(>#contents>[is-hist
 www.youtube.com##:is(ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer,ytd-item-section-renderer):has(.badge-style-type-live-now-alternate,.yt-spec-avatar-shape--live-ring)
 www.youtube.com##:is(ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer,ytd-item-section-renderer,ytd-video-renderer):has([aria-label~="Streamed"])
 www.youtube.com##:is(ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer,ytd-item-section-renderer,ytd-video-renderer):not(:has([aria-label~="Streamed"])) :is(#metadata-line>span,.yt-content-metadata-view-model__metadata-row):last-of-type:has-text(Streamed):upward(ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer,ytd-item-section-renderer,ytd-video-renderer)
-
 
 ! =========================
 ! FILTER BY CHANNEL / TITLE
@@ -53,8 +51,7 @@ m.youtube.com##ytm-media-item .media-channel a:not([class]):is([href="/@ChannelU
 ! =========================
 
 youtube.com##ytd-search ytd-item-section-renderer>#contents>:is(:not(ytd-video-renderer,yt-showing-results-for-renderer,[icon-name="promo-full-height:EMPTY_SEARCH"]),ytd-video-renderer:has([aria-label="Shorts"])),ytd-secondary-search-container-renderer
-www.youtube.com##ytd-search ytd-video-renderer:has(#text.ytd-channel-name:is([title="Exact channel name 1"],[title="Exact channel name 2"]))
-
+www.youtube.com##ytd-search ytd-video-renderer:has(#text.ytd-channel-name:is([title="Exact channel name 1"], [title="Exact channel name 2"]))
 
 ! ======================================================================
 ! RECOMMENDATIONS & SUGGESTIONS
@@ -91,3 +88,4 @@ www.youtube.com##+js(aeld, wheel, , elements, .html5-video-player )
 
 youtube.com##ytd-rich-item-renderer:has(.yt-badge-shape--membership)
 www.youtube.com##ytd-rich-grid-renderer:style(--ytd-rich-grid-items-per-row: 5 !important;)
+www.youtube.com##ytd-button-renderer.ytd-menu-renderer.style-scope > yt-button-shape
