@@ -76,7 +76,6 @@ www.youtube.com##ytd-search ytd-video-renderer:has(#text.ytd-channel-name:is([ti
 www.youtube.com##ytd-browse[page-subtype="home"] :is(ytd-rich-grid-row,#contents.ytd-rich-grid-row):style(display: contents !important)
 www.youtube.com##ytd-rich-item-renderer[rendered-from-rich-grid][is-in-first-column]:style(margin-left: calc(var(--ytd-rich-grid-item-margin)/2) !important)
 www.youtube.com##ytd-rich-grid-renderer>#contents:style(margin-left: calc(var(--ytd-rich-grid-gutter-margin)) !important)
-www.youtube.com##content.ytd-rich-section-renderer:style
 youtube.com##.html5-video-player.ended-mode .ytp-fullscreen-grid
 youtube.com##.html5-video-player.ytp-fullscreen:is(.ytp-fullscreen-grid-peeking,.ytp-fullscreen-grid-active) .ytp-fullscreen-grid
 youtube.com##.html5-video-player.ytp-fullscreen:is(.ytp-fullscreen-grid-peeking,.ytp-fullscreen-grid-active) .ytp-gradient-bottom
