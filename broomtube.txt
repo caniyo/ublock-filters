@@ -1,3 +1,4 @@
+!================================================
 ! Title: 🧹 BroomTube
 ! Author: caniyo
 ! License: MIT License
@@ -9,8 +10,18 @@
 ! Note:
 ! This list is maintained for personal use.
 ! No active support or public promotion intended.
+!
+! ------------------------------------------------
+! Personal structure refactor for maintainability.
+! Filters remain property of original authors.
+!
+! Last updated: 2026-02-03
+!================================================
 
 
+! ============================================================
+! 00 CORE UI REMOVAL (VERY STABLE)
+! ============================================================
 
 ! =========================
 ! SHORTS
@@ -27,6 +38,7 @@ www.youtube.com##ytd-browse[page-subtype="subscriptions"] ytd-rich-item-renderer
 www.youtube.com###related :is(ytd-compact-video-renderer,yt-lockup-view-model):has([overlay-style="SHORTS"],[href^="/shorts/"])
 www.youtube.com##ytd-item-section-renderer[page-subtype]:has(>#contents>[is-history]>#dismissible>ytd-thumbnail>#thumbnail[href^="/shorts/"])
 
+
 ! =========================
 ! LIVE / VODS
 ! =========================
@@ -35,49 +47,31 @@ www.youtube.com##:is(ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-
 www.youtube.com##:is(ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer,ytd-item-section-renderer,ytd-video-renderer):has([aria-label~="Streamed"])
 www.youtube.com##:is(ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer,ytd-item-section-renderer,ytd-video-renderer):not(:has([aria-label~="Streamed"])) :is(#metadata-line>span,.yt-content-metadata-view-model__metadata-row):last-of-type:has-text(Streamed):upward(ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer,ytd-item-section-renderer,ytd-video-renderer)
 
-! =========================
-! FILTER BY CHANNEL / TITLE
-! =========================
 
-youtube.com##ytd-browse[page-subtype="home"] ytd-rich-item-renderer:has([href="/channel/channel1-ID-here"],[href="@/Channel2NameHere"])
-youtube.com##ytd-browse[page-subtype="home"] ytd-rich-item-renderer:has(:is(#video-title-link,h3):is([title*="Partial Match"],[title*="Case-Insensitive Partial Match"i],[title~="Space-separated-aka-Whole-word-match"]))
-youtube.com###related :is(ytd-compact-video-renderer,yt-lockup-view-model):has(:is(#video-title,h3):is([title*="Partial Match"],[title*="Case-Insensitive Partial Match"i],[title~="Space-separated-aka-Whole-word-match"]))
-www.youtube.com###related :is(ytd-compact-video-renderer,yt-lockup-view-model) .yt-content-metadata-view-model__metadata-row:first-child>span:has-text(/^(Channel Name 1|Channel Name 2)$/):upward(ytd-compact-video-renderer,yt-lockup-view-model)
-m.youtube.com##ytm-media-item .media-channel a:not([class]):is([href="/@ChannelURL"],[href="/@AnotherChannelURL"]):upward(ytm-media-item)
-
-! =========================
-! PLAYER MANIPULATION (AI)
-! =========================
-
-! Remove auto-dub audio tracks (trusted filters required)
-youtube.com##+js(json-edit, ..adaptiveFormats.*[?.audioTrack.isAutoDubbed])
-youtube.com##+js(json-edit-xhr-response, ..adaptiveFormats.*[?.audioTrack.isAutoDubbed], propsToMatch, /youtubei)
-
-
-! =========================
-! SEARCH
-! =========================
-
-youtube.com##ytd-search ytd-item-section-renderer>#contents>:is(:not(ytd-video-renderer,yt-showing-results-for-renderer,[icon-name="promo-full-height:EMPTY_SEARCH"]),ytd-video-renderer:has([aria-label="Shorts"])),ytd-secondary-search-container-renderer
-www.youtube.com##ytd-search ytd-video-renderer:has(#text.ytd-channel-name:is([title="Exact channel name 1"], [title="Exact channel name 2"]))
-
-! ======================================================================
-! RECOMMENDATIONS & SUGGESTIONS
-! ======================================================================
+! ============================================================
+! 10 DISCOVERY REMOVAL
+! ============================================================
 
 youtube.com##ytd-browse[page-subtype="home"]
 youtube.com##ytd-watch-next-secondary-results-renderer
 youtube.com##ytd-watch-flexy ytd-rich-grid-renderer
 youtube.com##ytd-watch-flexy ytd-rich-item-renderer
 youtube.com##ytd-watch-flexy ytd-shelf-renderer
-youtube.com##ytd-browse[page-subtype="home"]
 youtube.com##ytd-browse[page-subtype="explore"]
 youtube.com##ytd-browse[page-subtype="trending"]
 
 
-! =========================
-! LAYOUT / FULLSCREEN
-! =========================
+! ============================================================
+! 20 SEARCH CLEANUP
+! ============================================================
+
+youtube.com##ytd-search ytd-item-section-renderer>#contents>:is(:not(ytd-video-renderer,yt-showing-results-for-renderer,[icon-name="promo-full-height:EMPTY_SEARCH"]),ytd-video-renderer:has([aria-label="Shorts"])),ytd-secondary-search-container-renderer
+www.youtube.com##ytd-search ytd-video-renderer:has(#text.ytd-channel-name:is([title="Exact channel name 1"], [title="Exact channel name 2"]))
+
+
+! ============================================================
+! 30 LAYOUT / FULLSCREEN
+! ============================================================
 
 www.youtube.com##ytd-browse[page-subtype="home"] :is(ytd-rich-grid-row,#contents.ytd-rich-grid-row):style(display: contents !important)
 www.youtube.com##ytd-rich-item-renderer[rendered-from-rich-grid][is-in-first-column]:style(margin-left: calc(var(--ytd-rich-grid-item-margin)/2) !important)
@@ -87,13 +81,39 @@ youtube.com##.html5-video-player.ended-mode .ytp-fullscreen-grid
 youtube.com##.html5-video-player.ytp-fullscreen:is(.ytp-fullscreen-grid-peeking,.ytp-fullscreen-grid-active) .ytp-fullscreen-grid
 youtube.com##.html5-video-player.ytp-fullscreen:is(.ytp-fullscreen-grid-peeking,.ytp-fullscreen-grid-active) .ytp-gradient-bottom
 youtube.com##div.html5-video-player:style(--ytp-grid-scroll-percentage: 0 !important)
+
+
+! ============================================================
+! 40 USER CUSTOM FILTERS
+! ============================================================
+
+youtube.com##ytd-browse[page-subtype="home"] ytd-rich-item-renderer:has([href="/channel/channel1-ID-here"],[href="@/Channel2NameHere"])
+youtube.com##ytd-browse[page-subtype="home"] ytd-rich-item-renderer:has(:is(#video-title-link,h3):is([title*="Partial Match"],[title*="Case-Insensitive Partial Match"i],[title~="Space-separated-aka-Whole-word-match"]))
+youtube.com###related :is(ytd-compact-video-renderer,yt-lockup-view-model):has(:is(#video-title,h3):is([title*="Partial Match"],[title*="Case-Insensitive Partial Match"i],[title~="Space-separated-aka-Whole-word-match"]))
+www.youtube.com###related :is(ytd-compact-video-renderer,yt-lockup-view-model) .yt-content-metadata-view-model__metadata-row:first-child>span:has-text(/^(Channel Name 1|Channel Name 2)$/):upward(ytd-compact-video-renderer,yt-lockup-view-model)
+m.youtube.com##ytm-media-item .media-channel a:not([class]):is([href="/@ChannelURL"],[href="/@AnotherChannelURL"]):upward(ytm-media-item)
+
+
+! ============================================================
+! 70 AGGRESSIVE — HIGH BREAKAGE RISK
+! ============================================================
+
+youtube.com##+js(json-edit, ..adaptiveFormats.*[?.audioTrack.isAutoDubbed])
+youtube.com##+js(json-edit-xhr-response, ..adaptiveFormats.*[?.audioTrack.isAutoDubbed], propsToMatch, /youtubei)
+
 www.youtube.com##+js(aeld, wheel, , elements, .html5-video-player )
 
 
-! =========================
-! MISC
-! =========================
+! ============================================================
+! 80 MISC
+! ============================================================
 
 youtube.com##ytd-rich-item-renderer:has(.yt-badge-shape--membership)
 www.youtube.com##ytd-rich-grid-renderer:style(--ytd-rich-grid-items-per-row: 5 !important;)
 www.youtube.com###menu > .ytd-shelf-renderer.style-scope
+
+
+! ============================================================
+! 99 BREAKAGE QUARANTINE
+! move suspicious filters here — never delete
+! ============================================================
