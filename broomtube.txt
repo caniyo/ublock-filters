@@ -1,179 +1,149 @@
 !================================================
-! Title: 🧹 BroomTube
-! Author: caniyo
-! License: MIT License
-!
-! Credits:
-! Core filters sourced from the r/uBlockOrigin YouTube Solutions Wiki:
-! https://www.reddit.com/r/uBlockOrigin/wiki/solutions/youtube/
-!
-! Note:
-! This list is maintained for personal use.
-! No active support or public promotion intended.
-!
-! ------------------------------------------------
-! Personal structure refactor for maintainability.
-! Filters remain property of original authors.
-!
-! Last updated: 2026-03-23
+! Title: 🧹 BroomTube (Optimized)
+! Description: YouTube filter list for uBlock Origin
+! Updated: 2026-04-04
+! License: MIT
 !================================================
 
 
-! ============================================================
-! DISCOVERY REMOVAL
-! ============================================================
+! ═══════════════════════════════════════════════
+! HOMEPAGE & DISCOVERY
+! ═══════════════════════════════════════════════
 
-! YT Home - No Videos
-youtube.com##ytd-browse[page-subtype="home"]
+! Hide all homepage videos
+youtube.com##ytd-browse[page-subtype="home"] ytd-rich-section-renderer
 
-! YT Videos - No Sidebar
+! Hide Explore page
+youtube.com##ytd-browse[page-subtype="explore"]
+
+! Hide Trending page
+youtube.com##ytd-browse[page-subtype="trending"]
+
+
+! ═══════════════════════════════════════════════
+! VIDEO PAGE - SIDEBAR & RECOMMENDATIONS
+! ═══════════════════════════════════════════════
+
+! Hide sidebar recommendations
 youtube.com##ytd-watch-next-secondary-results-renderer
 
-! YT Videos - Sidebar Without Recommendations
+! Hide sidebar grid layouts
 youtube.com##ytd-watch-flexy ytd-rich-grid-renderer
 youtube.com##ytd-watch-flexy ytd-rich-item-renderer
 youtube.com##ytd-watch-flexy ytd-shelf-renderer
 
-! YT Explore - Hide Explore Page
-youtube.com##ytd-browse[page-subtype="explore"]
 
-! YT Trending - Hide Trending Page
-youtube.com##ytd-browse[page-subtype="trending"]
+! ═══════════════════════════════════════════════
+! SHORTS - ALL LOCATIONS
+! ═══════════════════════════════════════════════
 
-
-! ============================================================
-! SHORTS
-! ============================================================
-
-! YT - Homepage and Subscriptions (Grid View) - Hide the Shorts section
+! Hide Shorts containers
 youtube.com##[is-shorts]
+youtube.com##ytd-reel-shelf-renderer
 
-! YT - Menu - Hide the Shorts button
-www.youtube.com###guide [title="Shorts"], .ytd-mini-guide-entry-renderer[title="Shorts"]
+! Hide Shorts in sidebar navigation
+www.youtube.com###guide [title="Shorts"]
+www.youtube.com##.ytd-mini-guide-entry-renderer[title="Shorts"]
 
-! YT - Search - Hide Shorts
-www.youtube.com##ytd-search ytd-video-renderer:has([overlay-style="SHORTS"],[href^="/shorts/"])
-
-! YT - Search, Channels, Subscriptions (List View) and Sidebar/Below Player Recommendations - Hide the Shorts sections
-www.youtube.com##ytd-reel-shelf-renderer
-
-! YT - Channels - Hide the Shorts tab
+! Hide Shorts tabs on channels
 www.youtube.com##[tab-title="Shorts"]
 
-! YT - Subscriptions - Hide Shorts - Grid View
+! Hide Shorts in subscriptions
 www.youtube.com##ytd-browse[page-subtype="subscriptions"] ytd-grid-video-renderer:has([overlay-style="SHORTS"],[href^="/shorts/"])
-
-! YT - Subscriptions - Hide Shorts - List View
 www.youtube.com##ytd-browse[page-subtype="subscriptions"] ytd-video-renderer:has([overlay-style="SHORTS"],[href^="/shorts/"])
-
-! YT - Subscriptions - New Layout - Hide Shorts
 www.youtube.com##ytd-browse[page-subtype="subscriptions"] ytd-rich-item-renderer:has([overlay-style="SHORTS"],[href^="/shorts/"])
 
-! YT - Sidebar - Hide Shorts
+! Hide Shorts in search
+www.youtube.com##ytd-search ytd-video-renderer:has([overlay-style="SHORTS"],[href^="/shorts/"])
+
+! Hide Shorts in sidebar
 www.youtube.com###related :is(ytd-compact-video-renderer,yt-lockup-view-model):has([overlay-style="SHORTS"],[href^="/shorts/"])
 
-! YT - History - Hide Shorts
+! Hide Shorts in history
 www.youtube.com##ytd-item-section-renderer[page-subtype]:has(>#contents>[is-history]>#dismissible>ytd-thumbnail>#thumbnail[href^="/shorts/"])
 
 
-! ============================================================
-! LIVESTREAMS
-! ============================================================
+! ═══════════════════════════════════════════════
+! LIVESTREAMS & VODs
+! ═══════════════════════════════════════════════
 
-! Updated livestream filters
+! Hide live videos by badge
+www.youtube.com##:is(ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer):has(.badge-style-type-live-now-alternate)
+
+! Hide live videos by aria-label
 www.youtube.com##ytd-rich-item-renderer:has([aria-label*="Live"])
 www.youtube.com##ytd-grid-video-renderer:has([aria-label*="Live"])
 www.youtube.com##ytd-video-renderer:has([aria-label*="Live"])
 
-! YT - Hide VODs/Streamed Videos
+! Hide VODs/Streamed videos
 www.youtube.com##ytd-rich-item-renderer:has-text(Streamed)
 www.youtube.com##ytd-grid-video-renderer:has-text(Streamed)
 www.youtube.com##ytd-video-renderer:has-text(Streamed)
+www.youtube.com##ytd-compact-video-renderer:has-text(Streamed)
 
 
-! ============================================================
-! SUGGESTED VIDEOS
-! ============================================================
+! ═══════════════════════════════════════════════
+! ENDSCREEN & AUTOPLAY
+! ═══════════════════════════════════════════════
 
-! YT Home - Hide videos based on channel URLs
-youtube.com##ytd-browse[page-subtype="home"] ytd-rich-item-renderer:has([href="/channel/channel1-ID-here"],[href="@/Channel2NameHere"])
-
-! YT Home - Hide videos based on their titles
-youtube.com##ytd-browse[page-subtype="home"] ytd-rich-item-renderer:has(:is(#video-title-link,h3):is([title*="Partial Match"],[title*="Case-Insensitive Partial Match"i],[title~="Space-separated-aka-Whole-word-match"]))
-
-! YT Sidebar - Hide videos based on their titles
-youtube.com###related :is(ytd-compact-video-renderer,yt-lockup-view-model):has(:is(#video-title,h3):is([title*="Partial Match"],[title*="Case-Insensitive Partial Match"i],[title~="Space-separated-aka-Whole-word-match"]))
-
-! YT - Sidebar - Hide videos based on channel names (procedural)
-www.youtube.com###related :is(ytd-compact-video-renderer,yt-lockup-view-model) .yt-content-metadata-view-model__metadata-row:first-child>span:has-text(/^(Channel Name 1|Channel Name 2)$/):upward(ytd-compact-video-renderer,yt-lockup-view-model)
-
-! Hide endscreen suggestions/recommendations
-youtube.com##.ytp-fullscreen-grid
-youtube.com##.ytp-modern-videowall-still
-youtube.com##.ytp-fullscreen-grid-stills-container
-
-
-! ============================================================
-! SEARCH PAGE WITHOUT BLOAT
-! ============================================================
-
-! YT Search - keep only videos (no shorts)
-youtube.com##ytd-search ytd-item-section-renderer>#contents>:is(:not(ytd-video-renderer,yt-showing-results-for-renderer,[icon-name="promo-full-height:EMPTY_SEARCH"]),ytd-video-renderer:has([aria-label="Shorts"])),ytd-secondary-search-container-renderer
-
-! YT Search - hide results based on channel names
-www.youtube.com##ytd-search ytd-video-renderer:has(#text.ytd-channel-name:is([title="Exact channel name 1"], [title="Exact channel name 2"]))
-
-
-! ============================================================
-! PLACEHOLDERS IN THE HOME PAGE RECOMMENDATIONS
-! ============================================================
-
-! Move homepage placeholders to the end
-www.youtube.com##ytd-browse[page-subtype="home"] :is(ytd-rich-grid-row,#contents.ytd-rich-grid-row):style(display: contents !important)
-
-! Fixes grid alignment
-www.youtube.com##ytd-rich-item-renderer[rendered-from-rich-grid][is-in-first-column]:style(margin-left: calc(var(--ytd-rich-grid-item-margin)/2) !important)
-
-www.youtube.com##ytd-rich-grid-renderer>#contents:style(margin-left: calc(var(--ytd-rich-grid-gutter-margin)) !important)
-
-
-! ============================================================
-! REMOVE AUTO-DUB
-! ============================================================
-
-! Requires enabling: Allow custom filters requiring trust
-youtube.com##+js(json-edit, ..adaptiveFormats.*[?.audioTrack.isAutoDubbed])
-youtube.com##+js(json-edit-xhr-response, ..adaptiveFormats.*[?.audioTrack.isAutoDubbed], propsToMatch, /youtubei)
-
-
-! ============================================================
-! FULLSCREEN GRID REMOVAL
-! ============================================================
-
+! Hide fullscreen grid (endscreen suggestions)
 youtube.com##.html5-video-player.ended-mode .ytp-fullscreen-grid
-youtube.com##.html5-video-player.ytp-fullscreen:is(.ytp-fullscreen-grid-peeking,.ytp-fullscreen-grid-active) .ytp-fullscreen-grid
-youtube.com##.html5-video-player.ytp-fullscreen:is(.ytp-fullscreen-grid-peeking,.ytp-fullscreen-grid-active) .ytp-gradient-bottom
+youtube.com##.html5-video-player.ytp-fullscreen .ytp-fullscreen-grid
+youtube.com##.ytp-fullscreen-grid
+youtube.com##.ytp-fullscreen-grid-stills-container
+youtube.com##.ytp-modern-videowall-still
+youtube.com##.ytp-fullscreen-grid-buttons-container
+
+! Disable grid scroll behavior
 youtube.com##div.html5-video-player:style(--ytp-grid-scroll-percentage: 0 !important)
 
+! Hide gradient overlay on fullscreen
+youtube.com##.html5-video-player.ytp-fullscreen .ytp-gradient-bottom
 
-! ============================================================
+
+! ═══════════════════════════════════════════════
+! SEARCH PAGE
+! ═══════════════════════════════════════════════
+
+! Keep only videos on search (remove clutter)
+youtube.com##ytd-search ytd-item-section-renderer>#contents>:is(:not(ytd-video-renderer,yt-showing-results-for-renderer,[icon-name="promo-full-height:EMPTY_SEARCH"]),ytd-video-renderer:has([aria-label="Shorts"]))
+
+! Hide secondary search containers
+youtube.com##ytd-secondary-search-container-renderer
+
+
+! ═══════════════════════════════════════════════
 ! MISCELLANEOUS
-! ============================================================
+! ═══════════════════════════════════════════════
 
-! YT Home - Hide videos with membership badge
+! Hide membership badges
 youtube.com##ytd-rich-item-renderer:has(.yt-badge-shape--membership)
 
-! YT - Rich grid layout (5 columns)
-www.youtube.com##ytd-rich-grid-renderer:style(--ytd-rich-grid-items-per-row: 5 !important;)
-
-! YT - Hide shelf renderer menu
+! Hide shelf renderer menu
 www.youtube.com###menu > .ytd-shelf-renderer.style-scope
 
-! Disable wheel event on video player
-www.youtube.com##+js(aeld, wheel, , elements, .html5-video-player )
+! Set grid to 5 columns
+www.youtube.com##ytd-rich-grid-renderer:style(--ytd-rich-grid-items-per-row: 5 !important)
+
+! Disable wheel scroll on video player
+www.youtube.com##+js(aeld, wheel, , elements, .html5-video-player)
 
 
-! ============================================================
-! BREAKAGE QUARANTINE
-! move suspicious filters here — never delete
-! ============================================================
+! ═══════════════════════════════════════════════
+! CHANNEL-/VIDEO-SPECIFIC FILTERS (Templates)
+! ═══════════════════════════════════════════════
+
+! Template: Hide videos by channel name
+! www.youtube.com###related :is(ytd-compact-video-renderer,yt-lockup-view-model) .yt-content-metadata-view-model__metadata-row:first-child>span:has-text(/^Channel Name$/):upward(ytd-compact-video-renderer,yt-lockup-view-model)
+
+! Template: Hide videos by title
+! youtube.com##ytd-browse[page-subtype="home"] ytd-rich-item-renderer:has(h3[title*="Keyword"])
+
+
+! ═══════════════════════════════════════════════
+! OPTIONAL: ADVANCED FILTERS (Disabled by default)
+! ═══════════════════════════════════════════════
+
+! Remove auto-dub (requires "Allow custom filters requiring trust")
+  youtube.com##+js(json-edit, ..adaptiveFormats.*[?.audioTrack.isAutoDubbed])
+  youtube.com##+js(json-edit-xhr-response, ..adaptiveFormats.*[?.audioTrack.isAutoDubbed], propsToMatch, /youtubei)
