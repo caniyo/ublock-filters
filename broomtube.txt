@@ -107,8 +107,10 @@ youtube.com###related :is(ytd-compact-video-renderer,yt-lockup-view-model):has(:
 ! YT - Sidebar - Hide videos based on channel names (procedural)
 www.youtube.com###related :is(ytd-compact-video-renderer,yt-lockup-view-model) .yt-content-metadata-view-model__metadata-row:first-child>span:has-text(/^(Channel Name 1|Channel Name 2)$/):upward(ytd-compact-video-renderer,yt-lockup-view-model)
 
-! Mobile YT - Hide videos based on channel URLs
-m.youtube.com##ytm-media-item .media-channel a:not([class]):is([href="/@ChannelURL"],[href="/@AnotherChannelURL"]):upward(ytm-media-item)
+! Hide endscreen suggestions/recommendations
+youtube.com##.ytp-fullscreen-grid
+youtube.com##.ytp-modern-videowall-still
+youtube.com##.ytp-fullscreen-grid-stills-container
 
 
 ! ============================================================
