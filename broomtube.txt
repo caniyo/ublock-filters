@@ -80,14 +80,15 @@ www.youtube.com##ytd-item-section-renderer[page-subtype]:has(>#contents>[is-hist
 ! LIVESTREAMS
 ! ============================================================
 
-! YT - Hide Live Videos
-www.youtube.com##:is(ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer,ytd-item-section-renderer):has(.badge-style-type-live-now-alternate,.yt-spec-avatar-shape--live-ring)
+! Updated livestream filters
+www.youtube.com##ytd-rich-item-renderer:has([aria-label*="Live"])
+www.youtube.com##ytd-grid-video-renderer:has([aria-label*="Live"])
+www.youtube.com##ytd-video-renderer:has([aria-label*="Live"])
 
 ! YT - Hide VODs/Streamed Videos
-www.youtube.com##:is(ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer,ytd-item-section-renderer,ytd-video-renderer):has([aria-label~="Streamed"])
-
-! YT - Hide VODs/Streamed Videos (backup version - less efficient)
-www.youtube.com##:is(ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer,ytd-item-section-renderer,ytd-video-renderer):not(:has([aria-label~="Streamed"])) :is(#metadata-line>span,.yt-content-metadata-view-model__metadata-row):last-of-type:has-text(Streamed):upward(ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer,ytd-item-section-renderer,ytd-video-renderer)
+www.youtube.com##ytd-rich-item-renderer:has-text(Streamed)
+www.youtube.com##ytd-grid-video-renderer:has-text(Streamed)
+www.youtube.com##ytd-video-renderer:has-text(Streamed)
 
 
 ! ============================================================
