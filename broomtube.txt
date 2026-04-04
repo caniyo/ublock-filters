@@ -1,5 +1,5 @@
 !================================================
-! Title: 🧹 BroomTube (Optimized)
+! Title: 🧹 BroomTube 
 ! Description: YouTube filter list for uBlock Origin
 ! Updated: 2026-04-04
 ! License: MIT
