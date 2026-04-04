@@ -143,5 +143,5 @@ www.youtube.com##+js(aeld, wheel, , elements, .html5-video-player)
 ! ═══════════════════════════════════════════════
 
 ! Remove auto-dub (requires "Allow custom filters requiring trust")
-  youtube.com##+js(json-edit, ..adaptiveFormats.*[?.audioTrack.isAutoDubbed])
-  youtube.com##+js(json-edit-xhr-response, ..adaptiveFormats.*[?.audioTrack.isAutoDubbed], propsToMatch, /youtubei)
+youtube.com##+js(json-edit, ..adaptiveFormats.*[?.audioTrack.isAutoDubbed])
+youtube.com##+js(json-edit-xhr-response, ..adaptiveFormats.*[?.audioTrack.isAutoDubbed], propsToMatch, /youtubei)
