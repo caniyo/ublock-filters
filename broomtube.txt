@@ -67,13 +67,11 @@ www.youtube.com##ytd-item-section-renderer[page-subtype]:has(>#contents>[is-hist
 ! LIVESTREAMS & VODs
 ! ═══════════════════════════════════════════════
 
-! Hide live videos by badge
-www.youtube.com##:is(ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer):has(.badge-style-type-live-now-alternate)
-
-! Hide live videos by aria-label
-www.youtube.com##ytd-rich-item-renderer:has([aria-label*="Live"])
-www.youtube.com##ytd-grid-video-renderer:has([aria-label*="Live"])
-www.youtube.com##ytd-video-renderer:has([aria-label*="Live"])
+! Hide live videos - Updated selectors
+www.youtube.com##ytd-rich-item-renderer:has(.yt-spec-avatar-shape--live-ring)
+www.youtube.com##ytd-rich-item-renderer:has(.yt-badge-shape--thumbnail-live)
+www.youtube.com##yt-lockup-view-model:has(.yt-spec-avatar-shape--live-ring)
+www.youtube.com##yt-lockup-view-model:has(.yt-badge-shape--thumbnail-live)
 
 ! Hide VODs/Streamed videos
 www.youtube.com##ytd-rich-item-renderer:has-text(Streamed)
