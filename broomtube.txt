@@ -68,13 +68,23 @@ www.youtube.com##ytd-item-section-renderer[page-subtype]:has(>#contents>[is-hist
 ! ═══════════════════════════════════════════════
 
 ! Hide LIVE videos (badge-based)
-youtube.com##yt-thumbnail-badge-view-model:has(badge-shape.ytBadgeShapeThumbnailLive):upward(yt-lockup-view-model,ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer)
+youtube.com##ytd-rich-item-renderer:has(yt-thumbnail-badge-view-model badge-shape.ytBadgeShapeThumbnailLive)
+youtube.com##yt-lockup-view-model:has(yt-thumbnail-badge-view-model badge-shape.ytBadgeShapeThumbnailLive)
+youtube.com##ytd-grid-video-renderer:has(yt-thumbnail-badge-view-model badge-shape.ytBadgeShapeThumbnailLive)
+youtube.com##ytd-compact-video-renderer:has(yt-thumbnail-badge-view-model badge-shape.ytBadgeShapeThumbnailLive)
 
 ! Hide Upcoming videos (badge text)
-youtube.com##div.ytBadgeShapeText:has-text(Upcoming):upward(yt-lockup-view-model,ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer)
+youtube.com##ytd-rich-item-renderer:has(div.ytBadgeShapeText:has-text(Upcoming))
+youtube.com##yt-lockup-view-model:has(div.ytBadgeShapeText:has-text(Upcoming))
+youtube.com##ytd-grid-video-renderer:has(div.ytBadgeShapeText:has-text(Upcoming))
+youtube.com##ytd-compact-video-renderer:has(div.ytBadgeShapeText:has-text(Upcoming))
 
 ! Hide Streamed videos (metadata text)
-youtube.com##span.ytAttributedStringHost.ytContentMetadataViewModelMetadataText:has-text(Streamed):upward(yt-lockup-view-model,ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer,ytd-video-renderer)
+youtube.com##ytd-rich-item-renderer:has(span.ytAttributedStringHost.ytContentMetadataViewModelMetadataText:has-text(Streamed))
+youtube.com##yt-lockup-view-model:has(span.ytAttributedStringHost.ytContentMetadataViewModelMetadataText:has-text(Streamed))
+youtube.com##ytd-grid-video-renderer:has(span.ytAttributedStringHost.ytContentMetadataViewModelMetadataText:has-text(Streamed))
+youtube.com##ytd-compact-video-renderer:has(span.ytAttributedStringHost.ytContentMetadataViewModelMetadataText:has-text(Streamed))
+youtube.com##ytd-video-renderer:has(span.ytAttributedStringHost.ytContentMetadataViewModelMetadataText:has-text(Streamed))
 
 
 ! ═══════════════════════════════════════════════
