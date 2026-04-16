@@ -64,17 +64,17 @@ www.youtube.com##ytd-item-section-renderer[page-subtype]:has(>#contents>[is-hist
 
 
 ! ═══════════════════════════════════════════════
-! LIVESTREAMS & VODs
+! LIVESTREAMS & VODs - CORRECTED SELECTORS
 ! ═══════════════════════════════════════════════
 
-! Hide live videos (all locations)
-www.youtube.com##:is(ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer,ytd-item-section-renderer,yt-lockup-view-model):has(.badge-style-type-live-now-alternate,.yt-spec-avatar-shape--live-ring)
+! Hide LIVE videos (badge-based)
+youtube.com##yt-thumbnail-badge-view-model:has(badge-shape.ytBadgeShapeThumbnailLive):upward(yt-lockup-view-model,ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer)
 
-! Hide VODs/Streamed videos (primary - uses aria-label)
-www.youtube.com##:is(ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer,ytd-item-section-renderer,ytd-video-renderer,yt-lockup-view-model):has([aria-label~="Streamed"])
+! Hide Upcoming videos (badge text)
+youtube.com##div.ytBadgeShapeText:has-text(Upcoming):upward(yt-lockup-view-model,ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer)
 
-! Hide VODs/Streamed videos (backup - less efficient)
-www.youtube.com##:is(ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer,ytd-item-section-renderer,ytd-video-renderer,yt-lockup-view-model):not(:has([aria-label~="Streamed"])) :is(#metadata-line>span,.yt-content-metadata-view-model__metadata-row):last-of-type:has-text(Streamed):upward(ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer,ytd-item-section-renderer,ytd-video-renderer,yt-lockup-view-model)
+! Hide Streamed videos (metadata text)
+youtube.com##span.ytAttributedStringHost.ytContentMetadataViewModelMetadataText:has-text(Streamed):upward(yt-lockup-view-model,ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer,ytd-video-renderer)
 
 
 ! ═══════════════════════════════════════════════
