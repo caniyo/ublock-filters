@@ -1,7 +1,7 @@
 !================================================
 ! Title: 🧹 BroomTube 
 ! Description: YouTube filter list for uBlock Origin
-! Updated: 2026-04-04
+! Updated: 2026-04-16
 ! License: MIT
 !================================================
 
@@ -67,17 +67,14 @@ www.youtube.com##ytd-item-section-renderer[page-subtype]:has(>#contents>[is-hist
 ! LIVESTREAMS & VODs
 ! ═══════════════════════════════════════════════
 
-! Hide live videos
-www.youtube.com##ytd-rich-item-renderer:has(.yt-spec-avatar-shape--live-ring)
-www.youtube.com##ytd-rich-item-renderer:has(.yt-badge-shape--thumbnail-live)
-www.youtube.com##yt-lockup-view-model:has(.yt-spec-avatar-shape--live-ring)
-www.youtube.com##yt-lockup-view-model:has(.yt-badge-shape--thumbnail-live)
+! Hide live videos (all locations)
+www.youtube.com##:is(ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer,ytd-item-section-renderer,yt-lockup-view-model):has(.badge-style-type-live-now-alternate,.yt-spec-avatar-shape--live-ring)
 
-! Hide VODs/Streamed videos
-www.youtube.com##ytd-rich-item-renderer:has-text(Streamed)
-www.youtube.com##ytd-grid-video-renderer:has-text(Streamed)
-www.youtube.com##ytd-video-renderer:has-text(Streamed)
-www.youtube.com##ytd-compact-video-renderer:has-text(Streamed)
+! Hide VODs/Streamed videos (primary - uses aria-label)
+www.youtube.com##:is(ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer,ytd-item-section-renderer,ytd-video-renderer,yt-lockup-view-model):has([aria-label~="Streamed"])
+
+! Hide VODs/Streamed videos (backup - less efficient)
+www.youtube.com##:is(ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer,ytd-item-section-renderer,ytd-video-renderer,yt-lockup-view-model):not(:has([aria-label~="Streamed"])) :is(#metadata-line>span,.yt-content-metadata-view-model__metadata-row):last-of-type:has-text(Streamed):upward(ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer,ytd-item-section-renderer,ytd-video-renderer,yt-lockup-view-model)
 
 
 ! ═══════════════════════════════════════════════
