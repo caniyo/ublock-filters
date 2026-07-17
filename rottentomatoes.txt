@@ -9,8 +9,11 @@
 ! HOME & SUBSCRIPTIONS
 ! ═══════════════════════════════════════════════
 
-! Hide Teaser/Interview/Featurette videos from Rotten Tomatoes (incl. sub-channels)
+! Hide Teaser/Interview/Featurette videos from Rotten Tomatoes (main channel etc.)
 youtube.com##:is(yt-lockup-view-model,ytd-rich-item-renderer,ytd-video-renderer,ytd-grid-video-renderer):has(a[href*="RottenTomatoes" i]):has(h3:has-text(/Teaser|Interview|Featurette/i))
+
+! Rotten Tomatoes Trailers: only show videos labeled "Trailer", hide everything else
+youtube.com##:is(yt-lockup-view-model,ytd-rich-item-renderer,ytd-video-renderer,ytd-grid-video-renderer):has(a[href*="RottenTomatoesTRAILERS" i]):not(:has(h3:has-text(/Trailer/i)))
 
 ! ═══════════════════════════════════════════════
 ! SIDEBAR & RELATED VIDEOS
