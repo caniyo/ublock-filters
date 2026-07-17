@@ -9,12 +9,12 @@
 ! HOME & SUBSCRIPTIONS
 ! ═══════════════════════════════════════════════
 
-! Hide Teaser/Interview/Featurette videos from Rotten Tomatoes
-youtube.com##yt-lockup-view-model:has(.yt-content-metadata-view-model__metadata-row:first-child>span:has-text(/^Rotten Tomatoes$/)):has(h3:has-text(/Teaser|Interview|Featurette/i))
+! Hide Teaser/Interview/Featurette videos from Rotten Tomatoes (incl. sub-channels)
+youtube.com##yt-lockup-view-model:has(.yt-content-metadata-view-model__metadata-row:first-child>span:has-text(/^Rotten Tomatoes/)):has(h3:has-text(/Teaser|Interview|Featurette/i))
 
 ! ═══════════════════════════════════════════════
 ! SIDEBAR & RELATED VIDEOS
 ! ═══════════════════════════════════════════════
 
-! Hide Teaser/Interview/Featurette videos from Rotten Tomatoes
+! Hide Teaser/Interview/Featurette videos from Rotten Tomatoes (incl. sub-channels)
 www.youtube.com###related :is(ytd-compact-video-renderer,yt-lockup-view-model):has-text(/Rotten Tomatoes/):has-text(/Teaser|Interview|Featurette/i)
