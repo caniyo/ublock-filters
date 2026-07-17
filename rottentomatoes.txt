@@ -1,12 +1,20 @@
-! ================================================
-! Title: Rotten Tomatoes Filter
-! Description: Hides Teaser/Interview/Featurette videos from Rotten Tomatoes
+!================================================
+! Title: 🍅 RottenTomatoes
+! Description: Hides Teaser/Interview/Featurette videos from Rotten Tomatoes on YouTube
 ! Updated: 2026-07-17
 ! License: MIT
-! ================================================
+!================================================
 
-! Home & Subscriptions
+! ═══════════════════════════════════════════════
+! HOME & SUBSCRIPTIONS
+! ═══════════════════════════════════════════════
+
+! Hide Teaser/Interview/Featurette videos from Rotten Tomatoes
 youtube.com##yt-lockup-view-model:has(.yt-content-metadata-view-model__metadata-row:first-child>span:has-text(/^Rotten Tomatoes$/)):has(h3:has-text(/Teaser|Interview|Featurette/i))
 
-! Sidebar / Related Videos
+! ═══════════════════════════════════════════════
+! SIDEBAR & RELATED VIDEOS
+! ═══════════════════════════════════════════════
+
+! Hide Teaser/Interview/Featurette videos from Rotten Tomatoes
 www.youtube.com###related :is(ytd-compact-video-renderer,yt-lockup-view-model):has-text(/Rotten Tomatoes/):has-text(/Teaser|Interview|Featurette/i)
